@@ -24,6 +24,8 @@ Termcolor is a library for ANSII color formatting like HTML for output in termin
 
 == TODO:
 
+ for windows...
+
 == LICENSE:
 
 (The MIT License)
