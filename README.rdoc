@@ -8,8 +8,10 @@ Termcolor is a library for ANSII color formatting like HTML for output in termin
 
 == FEATURES/PROBLEMS:
 
-
 == SYNOPSIS:
+
+ TermColor.parse('<blue>Hello</blue> <red>World!</red>')
+ #=> "\e[34mHello\e[0m \e[31mWorld!\e[0m"
 
 == REQUIREMENTS:
 
