@@ -1,15 +1,15 @@
 Gem::Specification.new do |s|
   s.name = 'termcolor'
-  s.version = '0.4.6'
-  s.summary = "Simple twitter client."
-  s.description = "TermColor is a simple twitter client."
-  s.files = %w( lib/termcolor/connection.rb lib/termcolor.rb
-                spec/termcolor_spec.rb spec/spec_helper.rb
-                examples/direct_message.rb examples/favorite.rb examples/follow.rb examples/friends_timeline.rb examples/limit.rb examples/replies.rb examples/search.rb examples/update_status.rb examples/user.rb
+  s.version = '0.1.0'
+  s.summary = "Termcolor is a library for ANSII color formatting like HTML for output in terminal."
+  s.description = "Termcolor is a library for ANSII color formatting like HTML for output in terminal."
+  s.files = %w( lib/termcolor.rb
+                spec/spec_helper.rb spec/termcolor_spec.rb
+                
                 README.rdoc
                 History.txt
                 Rakefile )
-  s.add_dependency("json_pure", ">= 1.1.3")
+  s.add_dependency("highline", ">= 1.5.0")
   s.author = 'jugyo'
   s.email = 'jugyo.org@gmail.com'
   s.homepage = 'http://github.com/jugyo/termcolor'
