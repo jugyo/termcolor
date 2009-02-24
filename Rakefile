@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 $:.unshift File.dirname(__FILE__) + '/lib/'
 require 'termcolor'
 require 'spec/rake/spectask'
@@ -12,6 +13,7 @@ desc 'Generate gemspec'
 task :gemspec do |t|
   open('termcolor.gemspec', "wb" ) do |file|
     file << <<-EOS
+# -*- coding: utf-8 -*-
 Gem::Specification.new do |s|
   s.name = 'termcolor'
   s.version = '#{TermColor::VERSION}'

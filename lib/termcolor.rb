@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'highline'
 require 'cgi'
 require 'rexml/parsers/streamparser' 
