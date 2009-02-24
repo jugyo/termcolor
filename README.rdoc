@@ -4,7 +4,7 @@ http://wiki.github.com/jugyo/termcolor
 
 == DESCRIPTION:
 
-Termcolor is a library for ANSII color formatting like HTML for output in terminal.
+Termcolor is a library for ANSI color formatting like HTML for output in terminal.
 
 == FEATURES/PROBLEMS:
 
