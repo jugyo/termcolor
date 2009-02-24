@@ -29,5 +29,10 @@ module TermColor
       lambda{ TermColor.parse('aaaaa<red>aaaaa</blue>aaaaa') }.should raise_error(TermColor::ParseError)
       lambda{ TermColor.parse('aaaaa<red>aaaaaaaaaa') }.should_not raise_error(TermColor::ParseError)
     end
+
+    it 'should escape text' do
+      text = 'a<foo>&</foo>a'
+      TermColor.escape(text).should == "a&lt;foo&gt;&amp;&lt;/foo&gt;a"
+    end
   end
 end

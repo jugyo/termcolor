@@ -11,6 +11,10 @@ module TermColor
   class ParseError < StandardError; end
 
   class << self
+    def escape(text)
+      CGI.escapeHTML(text)
+    end
+
     def parse(text)
       listener = MyListener.new 
       REXML::Parsers::StreamParser.new(text, listener).parse
