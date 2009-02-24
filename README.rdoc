@@ -19,6 +19,10 @@ Termcolor is a library for ANSII color formatting like HTML for output in termin
 
 == INSTALL:
 
+ sudo gem install termcolor
+
+or
+
  gem source -a http://gems.github.com
  sudo gem install jugyo-termcolor
 
