@@ -11,11 +11,6 @@ module TermColor
   class ParseError < StandardError; end
 
   class << self
-    @highline = HighLine.new
-    def print(text)
-      print parse(text)
-    end
-
     def parse(text)
       listener = MyListener.new 
       REXML::Parsers::StreamParser.new(text, listener).parse
