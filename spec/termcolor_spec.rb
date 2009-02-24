@@ -2,7 +2,7 @@
 
 require File.dirname(__FILE__) + '/spec_helper'
 
-class TermColor
+module TermColor
   describe TermColor do
     before do
     end

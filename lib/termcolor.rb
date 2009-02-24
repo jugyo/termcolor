@@ -4,7 +4,7 @@ require 'rexml/parsers/streamparser'
 require 'rexml/parsers/baseparser' 
 require 'rexml/streamlistener' 
 
-class TermColor
+module TermColor
   VERSION = '0.1.0'
   include REXML
 
