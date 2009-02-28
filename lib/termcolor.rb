@@ -7,7 +7,7 @@ require 'rexml/parsers/baseparser'
 require 'rexml/streamlistener' 
 
 module TermColor
-  VERSION = '0.2.4'
+  VERSION = '0.2.5'
   include REXML
 
   class ParseError < StandardError; end
