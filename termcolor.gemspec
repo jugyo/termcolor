@@ -2,8 +2,8 @@
 Gem::Specification.new do |s|
   s.name = 'termcolor'
   s.version = '0.2.4'
-  s.summary = "Termcolor is a library for ANSII color formatting like HTML for output in terminal."
-  s.description = "Termcolor is a library for ANSII color formatting like HTML for output in terminal."
+  s.summary = "Termcolor is a library for ANSI color formatting like HTML for output in terminal."
+  s.description = "Termcolor is a library for ANSI color formatting like HTML for output in terminal."
   s.files = %w( lib/termcolor.rb
                 spec/spec_helper.rb spec/termcolor_spec.rb
                 examples/example.rb

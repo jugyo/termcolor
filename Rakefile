@@ -17,8 +17,8 @@ task :gemspec do |t|
 Gem::Specification.new do |s|
   s.name = 'termcolor'
   s.version = '#{TermColor::VERSION}'
-  s.summary = "Termcolor is a library for ANSII color formatting like HTML for output in terminal."
-  s.description = "Termcolor is a library for ANSII color formatting like HTML for output in terminal."
+  s.summary = "Termcolor is a library for ANSI color formatting like HTML for output in terminal."
+  s.description = "Termcolor is a library for ANSI color formatting like HTML for output in terminal."
   s.files = %w( #{Dir['lib/**/*.rb'].join(' ')}
                 #{Dir['spec/**/*.rb'].join(' ')}
                 #{Dir['examples/**/*.rb'].join(' ')}

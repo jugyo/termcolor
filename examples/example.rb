@@ -6,7 +6,7 @@ puts TermColor.parse <<EOS
 
     <on_blue><white><bold>TermColor Example</bold></white></on_blue>
 
-    <on_green><white>Termcolor</white></on_green> is a library for <red><bold>ANSII</bold></red> <blue>c</blue><yellow>o</yellow><green>l</green>o<red>r</red> formatting like <on_magenta>HTML</on_magenta>
+    <on_green><white>Termcolor</white></on_green> is a library for <red><bold>ANSI</bold></red> <blue>c</blue><yellow>o</yellow><green>l</green>o<red>r</red> formatting like <on_magenta>HTML</on_magenta>
     for output in terminal.
 
 EOS
