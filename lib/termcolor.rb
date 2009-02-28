@@ -36,9 +36,11 @@ module TermColor
     end
 
     def tag_start(name, attrs)
-      @result << HighLine.const_get(name.upcase)
-      @tag_stack.push(name)
-    rescue NameError
+      esc_seq = to_esc_seq(name)
+      if esc_seq
+        @result << esc_seq
+        @tag_stack.push(name)
+      end
     end
 
     def text(text)
@@ -48,8 +50,19 @@ module TermColor
     def tag_end(name)
       @tag_stack.pop
       @result << HighLine::CLEAR
-      @result << HighLine.const_get(@tag_stack[-1].upcase) unless @tag_stack.empty?
+      @result << to_esc_seq(@tag_stack[-1].upcase) unless @tag_stack.empty?
     end
 
+    def to_esc_seq(name)
+      esc_seq = nil
+      begin
+        esc_seq = HighLine.const_get(name.upcase)
+      rescue NameError
+        if name =~ /^\d+$/
+          esc_seq = "\e[#{name}m"
+        end
+      end
+      esc_seq
+    end
   end
 end
