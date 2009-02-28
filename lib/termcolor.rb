@@ -35,8 +35,7 @@ module TermColor
     end
 
     def tag_start(name, attrs)
-      esc_seq = HighLine.const_get(name.upcase)
-      @result << esc_seq
+      @result << HighLine.const_get(name.upcase)
       @tag_stack.push(name)
     rescue NameError
     end
