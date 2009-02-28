@@ -50,7 +50,7 @@ module TermColor
     def tag_end(name)
       @tag_stack.pop
       @result << HighLine::CLEAR
-      @result << to_esc_seq(@tag_stack[-1].upcase) unless @tag_stack.empty?
+      @result << to_esc_seq(@tag_stack[-1]) unless @tag_stack.empty?
     end
 
     def to_esc_seq(name)
