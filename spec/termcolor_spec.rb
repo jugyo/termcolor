@@ -31,8 +31,8 @@ module TermColor
     end
 
     it 'should raise Error' do
-      lambda{ TermColor.parse('aaaaa<red>aaaaa</blue>aaaaa') }.should raise_error(TermColor::ParseError)
-      lambda{ TermColor.parse('aaaaa<red>aaaaaaaaaa') }.should_not raise_error(TermColor::ParseError)
+      lambda{ TermColor.parse('aaaaa<red>aaaaa</blue>aaaaa') }.should raise_error(REXML::ParseException)
+      lambda{ TermColor.parse('aaaaa<red>aaaaaaaaaa') }.should_not raise_error(REXML::ParseException)
     end
 
     it 'should escape text' do
@@ -43,6 +43,11 @@ module TermColor
       TermColor.unescape("&lt;&gt;&amp;&quote;&apos;").should == '<>&"\''
     end
 
+    it 'should prepare parse' do
+      TermColor.prepare_parse("<10>10</10>").should == '<_10>10</_10>'
+      TermColor.prepare_parse("<32>10</32>").should == '<_32>10</_32>'
+    end
+
     it 'should convert to escape sequence' do
       listener = TermColor::MyListener.new
       listener.to_esc_seq('red').should == "\e[31m"
@@ -51,6 +56,8 @@ module TermColor
       listener.to_esc_seq('0').should == "\e[0m"
       listener.to_esc_seq('31').should == "\e[31m"
       listener.to_esc_seq('031').should == "\e[031m"
+      listener.to_esc_seq('_0').should == "\e[0m"
+      listener.to_esc_seq('_31').should == "\e[31m"
     end
   end
 end

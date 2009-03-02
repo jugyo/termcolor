@@ -10,15 +10,11 @@ module TermColor
   VERSION = '0.2.6'
   include REXML
 
-  class ParseError < StandardError; end
-
   class << self
     def parse(text)
       listener = MyListener.new 
       REXML::Parsers::StreamParser.new(text, listener).parse
       listener.result
-    rescue REXML::ParseException => e
-      raise ParseError, e
     end
 
     def escape(text)
@@ -43,6 +39,10 @@ module TermColor
           when '&quote;' then '"'
         end
       end
+    end
+
+    def prepare_parse(text)
+      text.gsub(/<(\/?)(\d+)>/, '<\1_\2>')
     end
   end
 
@@ -78,8 +78,8 @@ module TermColor
       begin
         esc_seq = HighLine.const_get(name.upcase)
       rescue NameError
-        if name =~ /^\d+$/
-          esc_seq = "\e[#{name}m"
+        if name =~ /^[^0-9]?(\d+)$/
+          esc_seq = "\e[#{$1}m"
         end
       end
       esc_seq
