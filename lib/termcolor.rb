@@ -13,16 +13,36 @@ module TermColor
   class ParseError < StandardError; end
 
   class << self
-    def escape(text)
-      CGI.escapeHTML(text)
-    end
-
     def parse(text)
       listener = MyListener.new 
       REXML::Parsers::StreamParser.new(text, listener).parse
       listener.result
     rescue REXML::ParseException => e
       raise ParseError, e
+    end
+
+    def escape(text)
+      text.gsub(/[&<>'"]/) do | match |
+        case match
+          when '&' then '&amp;'
+          when '<' then '&lt;'
+          when '>' then '&gt;'
+          when "'" then '&apos;'
+          when '"' then '&quote;'
+        end
+      end
+    end
+
+    def unescape(text)
+      text.gsub(/&(lt|gt|amp|quote|apos);/) do | match |
+        case match
+          when '&amp;' then '&'
+          when '&lt;' then '<'
+          when '&gt;' then '>'
+          when '&apos;' then "'"
+          when '&quote;' then '"'
+        end
+      end
     end
   end
 

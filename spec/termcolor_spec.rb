@@ -36,8 +36,11 @@ module TermColor
     end
 
     it 'should escape text' do
-      text = 'a<foo>&</foo>a'
-      TermColor.escape(text).should == "a&lt;foo&gt;&amp;&lt;/foo&gt;a"
+      TermColor.escape('<>&"\'').should == "&lt;&gt;&amp;&quote;&apos;"
+    end
+
+    it 'should unescape text' do
+      TermColor.unescape("&lt;&gt;&amp;&quote;&apos;").should == '<>&"\''
     end
 
     it 'should convert to escape sequence' do
