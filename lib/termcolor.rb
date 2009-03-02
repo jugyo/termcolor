@@ -7,7 +7,7 @@ require 'rexml/parsers/baseparser'
 require 'rexml/streamlistener' 
 
 module TermColor
-  VERSION = '0.3.0'
+  VERSION = '0.3.1'
   include REXML
 
   class << self
