@@ -13,7 +13,7 @@ module TermColor
   class << self
     def parse(text)
       listener = MyListener.new 
-      REXML::Parsers::StreamParser.new(text, listener).parse
+      REXML::Parsers::StreamParser.new(prepare_parse(text), listener).parse
       listener.result
     end
 
