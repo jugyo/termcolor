@@ -24,7 +24,7 @@ module TermColor
           when '<' then '&lt;'
           when '>' then '&gt;'
           when "'" then '&apos;'
-          when '"' then '&quote;'
+          when '"' then '&quot;'
         end
       end
     end
@@ -36,7 +36,7 @@ module TermColor
           when '&lt;' then '<'
           when '&gt;' then '>'
           when '&apos;' then "'"
-          when '&quote;' then '"'
+          when '&quot;' then '"'
         end
       end
     end
