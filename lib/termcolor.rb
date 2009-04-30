@@ -24,6 +24,14 @@ module TermColor
     rescue REXML::ParseException => e
       raise ParseError, e
     end
+
+    def test(*args)
+      args = (0..109).to_a if args.empty?
+      args.each_with_index do |color, index|
+        print parse("<#{color}> #{color} </#{color}>") + "\t"
+        puts if (index + 1) % 10 == 0
+      end
+    end
   end
 
   class MyListener 
