@@ -7,22 +7,42 @@ require 'rexml/parsers/baseparser'
 require 'rexml/streamlistener' 
 
 module TermColor
-  VERSION = '0.2.5'
+  VERSION = '0.3.2'
   include REXML
 
-  class ParseError < StandardError; end
-
   class << self
-    def escape(text)
-      CGI.escapeHTML(text)
-    end
-
     def parse(text)
       listener = MyListener.new 
-      REXML::Parsers::StreamParser.new(text, listener).parse
+      REXML::Parsers::StreamParser.new(prepare_parse(text), listener).parse
       listener.result
-    rescue REXML::ParseException => e
-      raise ParseError, e
+    end
+
+    def escape(text)
+      text.gsub(/[&<>'"]/) do | match |
+        case match
+          when '&' then '&amp;'
+          when '<' then '&lt;'
+          when '>' then '&gt;'
+          when "'" then '&apos;'
+          when '"' then '&quot;'
+        end
+      end
+    end
+
+    def unescape(text)
+      text.gsub(/&(lt|gt|amp|quote|apos);/) do | match |
+        case match
+          when '&amp;' then '&'
+          when '&lt;' then '<'
+          when '&gt;' then '>'
+          when '&apos;' then "'"
+          when '&quot;' then '"'
+        end
+      end
+    end
+
+    def prepare_parse(text)
+      text.gsub(/<(\/?)(\d+)>/, '<\1_\2>')
     end
 
     def test(*args)
@@ -66,8 +86,8 @@ module TermColor
       begin
         esc_seq = HighLine.const_get(name.upcase)
       rescue NameError
-        if name =~ /^\d+$/
-          esc_seq = "\e[#{name}m"
+        if name =~ /^[^0-9]?(\d+)$/
+          esc_seq = "\e[#{$1}m"
         end
       end
       esc_seq
