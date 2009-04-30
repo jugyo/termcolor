@@ -30,7 +30,7 @@ module TermColor
     end
 
     def unescape(text)
-      text.gsub(/&(lt|gt|amp|quote|apos);/) do | match |
+      text.gsub(/&(lt|gt|amp|quot|apos);/) do | match |
         case match
           when '&amp;' then '&'
           when '&lt;' then '<'

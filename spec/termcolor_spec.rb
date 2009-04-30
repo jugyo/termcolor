@@ -36,11 +36,11 @@ module TermColor
     end
 
     it 'should escape text' do
-      TermColor.escape('<>&"\'').should == "&lt;&gt;&amp;&quote;&apos;"
+      TermColor.escape('<>&"\'').should == "&lt;&gt;&amp;&quot;&apos;"
     end
 
     it 'should unescape text' do
-      TermColor.unescape("&lt;&gt;&amp;&quote;&apos;").should == '<>&"\''
+      TermColor.unescape("&lt;&gt;&amp;&quot;&apos;").should == '<>&"\''
     end
 
     it 'should prepare parse' do
