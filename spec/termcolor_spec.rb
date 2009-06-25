@@ -59,5 +59,9 @@ module TermColor
       listener.to_esc_seq('_0').should == "\e[0m"
       listener.to_esc_seq('_31').should == "\e[31m"
     end
+
+    it 'should do colorize' do
+      TermColor.colorize('test', :green).should == "\e[32mtest\e[0m"
+    end
   end
 end

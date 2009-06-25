@@ -52,6 +52,10 @@ module TermColor
         puts if (index + 1) % 10 == 0
       end
     end
+
+    def colorize(text, color)
+      parse("<#{color}>#{escape(text)}</#{color}>")
+    end
   end
 
   class MyListener 
