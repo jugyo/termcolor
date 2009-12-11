@@ -86,15 +86,13 @@ module TermColor
     end
 
     def to_esc_seq(name)
-      esc_seq = nil
-      begin
-        esc_seq = HighLine.const_get(name.upcase)
-      rescue NameError
+      if (HighLine.const_defined?(name.upcase) rescue false)
+        HighLine.const_get(name.upcase)
+      else
         if name =~ /^[^0-9]?(\d+)$/
           esc_seq = "\e[#{$1}m"
         end
       end
-      esc_seq
     end
   end
 end
