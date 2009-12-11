@@ -96,3 +96,9 @@ module TermColor
     end
   end
 end
+
+class String
+  def termcolor
+    TermColor.parse(self)
+  end
+end
