@@ -33,7 +33,7 @@ module TermColor
     it 'should parse 4' do
       text = TermColor.parse('aa<f123>bbbbbbb<b321>ccccc</b321>b</f123>aaa')
       puts text
-      text.should == "aa\e[38;5;54mbbbbbbb\e[48;5;102mccccc\e[0m\e[38;5;54mb\e[0maaa"
+      text.should == "aa\e[38;5;67mbbbbbbb\e[48;5;137mccccc\e[0m\e[38;5;67mb\e[0maaa"
     end
 
     it 'should parse 5' do

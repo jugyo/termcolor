@@ -92,7 +92,7 @@ module TermColor
         case name
         when /^([fb])(\d+)$/
           fb = $1 == 'f' ? 38 : 48
-          color = $2.size == 3 ? 16 + $2.to_i(5) : 232 + $2.to_i
+          color = $2.size == 3 ? 16 + $2.to_i(6) : 232 + $2.to_i
           "\e[#{fb};5;#{color}m"
         when /^[^0-9]?(\d+)$/
           "\e[#{$1}m"
