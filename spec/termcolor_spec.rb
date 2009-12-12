@@ -30,6 +30,18 @@ module TermColor
       text.should == "aa\e[30mbbbbbbb\e[32mcccc\e[90mddd\e[0m\e[32mc\e[0m\e[30mb\e[0maaa"
     end
 
+    it 'should parse 4' do
+      text = TermColor.parse('aa<f123>bbbbbbb<b321>ccccc</b321>b</f123>aaa')
+      puts text
+      text.should == "aa\e[38;5;54mbbbbbbb\e[48;5;102mccccc\e[0m\e[38;5;54mb\e[0maaa"
+    end
+
+    it 'should parse 5' do
+      text = TermColor.parse('aa<f12>bbbbbbb<b6>ccccc</b6>b</f12>aaa')
+      puts text
+      text.should == "aa\e[38;5;244mbbbbbbb\e[48;5;238mccccc\e[0m\e[38;5;244mb\e[0maaa"
+    end
+
     it 'should raise Error' do
       lambda{ TermColor.parse('aaaaa<red>aaaaa</blue>aaaaa') }.should raise_error(REXML::ParseException)
       lambda{ TermColor.parse('aaaaa<red>aaaaaaaaaa') }.should_not raise_error(REXML::ParseException)
