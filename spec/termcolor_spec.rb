@@ -75,5 +75,19 @@ module TermColor
     it 'should do colorize' do
       TermColor.colorize('test', :green).should == "\e[32mtest\e[0m"
     end
+
+    it 'should make separate tags for combined-style tag' do
+      h = { "<red_on_yellow>hello, world</red_on_yellow>" =>
+                   "<red><on_yellow>hello, world</on_yellow></red>",
+            "<green_with_bold>hello, world</green_with_bold>" =>
+                   "<green><bold>hello, world</bold></green>",
+            "<blue_on_white_with_bold_and_underline>hello</blue_on_white_with_bold_and_underline>" =>
+                   "<blue><on_white><bold><underline>hello</underline></bold></on_white></blue>",
+            "<black_on_white>hello</black_on_white>term<green_with_bold>color</green_with_bold>" =>
+                   "<black><on_white>hello</on_white></black>term<green><bold>color</bold></green>" }
+      h.each_pair do |combined, separated|
+        TermColor.prepare_parse(combined).should == separated
+      end
+    end
   end
 end
