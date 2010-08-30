@@ -42,7 +42,21 @@ module TermColor
     end
 
     def prepare_parse(text)
-      text.gsub(/<(\/?)(\d+)>/, '<\1_\2>')
+      tag_separate text.gsub(/<(\/?)(\d+)>/, '<\1_\2>')
+    end
+
+    def tag_separate(text)
+      re = /<(\/*)([^\W_]+)(?:_(on_[^\W_]+))*(?:_with_([^\W_]+))*(?:_and_([^\W_]+))*>/
+      text.gsub(re) do
+        matchs = $~.captures
+        if matchs.shift.empty?
+          tag = ->t{ "<#{t}>" }
+        else
+          matchs.reverse!
+          tag = ->t{ "</#{t}>" }
+        end
+        matchs.compact.map { |word| tag[word] }.join
+      end
     end
 
     def test(*args)
