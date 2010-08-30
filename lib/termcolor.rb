@@ -18,28 +18,19 @@ module TermColor
     end
 
     def escape(text)
-      text.gsub(/[&<>'"]/) do | match |
-        case match
-          when '&' then '&amp;'
-          when '<' then '&lt;'
-          when '>' then '&gt;'
-          when "'" then '&apos;'
-          when '"' then '&quot;'
-        end
-      end
+      escape_or_unescape(:escape, text)
     end
 
     def unescape(text)
-      text.gsub(/&(lt|gt|amp|quot|apos);/) do | match |
-        case match
-          when '&amp;' then '&'
-          when '&lt;' then '<'
-          when '&gt;' then '>'
-          when '&apos;' then "'"
-          when '&quot;' then '"'
-        end
-      end
+      escape_or_unescape(:unescape, text)
     end
+
+    def escape_or_unescape(dir=:escape, text)
+      h = Hash[*%w(& &amp; < &lt; > &gt; ' &apos; " &quot;)]
+      h = h.invert if dir == :unescape
+      text.gsub(/(#{h.keys.join('|')})/){ h[$1] }
+    end
+    private :escape_or_unescape
 
     def prepare_parse(text)
       tag_separate text.gsub(/<(\/?)(\d+)>/, '<\1_\2>')
