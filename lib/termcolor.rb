@@ -109,19 +109,23 @@ end
 
 class String
   def termcolor(color=nil, target=nil)
-    if color
-      case target
-      when Range
-        dself = self.dup
-        dself[target] = TermColor.colorize(self[target], color)
-        dself
-      when String, Symbol
-        self.gsub(/#{target.to_s}/) { TermColor.colorize($&, color) }
+    tagging = ->s{ "<#{color}>#{s}</#{color}>" }
+    str =
+      if color
+        case target
+        when Range
+          dself = self.dup
+          dself[target] = tagging[(dself[target])]
+          dself
+        when String, Symbol
+          self.gsub(/#{target.to_s}/) { tagging[$&] }
+        else
+          tagging[self]
+        end
       else
-        TermColor.colorize(self, color)
+        self
       end
-    else
-      TermColor.parse(self)
-    end
+
+    TermColor.parse(str)
   end
 end
