@@ -89,5 +89,14 @@ module TermColor
         TermColor.prepare_parse(combined).should == separated
       end
     end
+
+    it 'should do colorize using String#termcolor' do
+      "<green>test</green>".termcolor.should == "\e[32mtest\e[0m"
+      "test".termcolor(:green).should == "\e[32mtest\e[0m"
+      "Hello, TermColor".termcolor(:green, 7..10).should == "Hello, \e[32mTerm\e[0mColor"
+      "ruby isn't ruby gem".termcolor(:red, 'ruby').should == "\e[31mruby\e[0m isn't \e[31mruby\e[0m gem"
+      "Hello, TermColor".termcolor(:green, :Term).should == "Hello, \e[32mTerm\e[0mColor"
+      "Hello, TermColor".termcolor(:red, '[A-Z]+').should == "\e[31mH\e[0mello, \e[31mT\e[0merm\e[31mC\e[0molor"
+    end
   end
 end

@@ -108,7 +108,20 @@ module TermColor
 end
 
 class String
-  def termcolor
-    TermColor.parse(self)
+  def termcolor(color=nil, target=nil)
+    if color
+      case target
+      when Range
+        dself = self.dup
+        dself[target] = TermColor.colorize(self[target], color)
+        dself
+      when String, Symbol
+        self.gsub(/#{target.to_s}/) { TermColor.colorize($&, color) }
+      else
+        TermColor.colorize(self, color)
+      end
+    else
+      TermColor.parse(self)
+    end
   end
 end
