@@ -1,6 +1,6 @@
 = termcolor
 
-http://wiki.github.com/jugyo/termcolor
+https://github.com/jugyo/termcolor
 
 == DESCRIPTION:
 
@@ -13,22 +13,9 @@ Termcolor is a library for ANSI color formatting like HTML for output in termina
  '<blue>Hello</blue> <red>World!</red>'.termcolor
  #=> "\e[34mHello\e[0m \e[31mWorld!\e[0m"
 
-== REQUIREMENTS:
-
-* highline
-
 == INSTALL:
 
- sudo gem install termcolor
-
-or
-
- gem source -a http://gems.github.com
- sudo gem install jugyo-termcolor
-
-== TODO:
-
- for windows...
+ gem install termcolor
 
 == LICENSE:
 
