@@ -10,7 +10,7 @@ Termcolor is a library for ANSI color formatting like HTML for output in termina
 
 == SYNOPSIS:
 
- TermColor.parse('<blue>Hello</blue> <red>World!</red>')
+ '<blue>Hello</blue> <red>World!</red>'.termcolor
  #=> "\e[34mHello\e[0m \e[31mWorld!\e[0m"
 
 == REQUIREMENTS:
