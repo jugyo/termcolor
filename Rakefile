@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 $:.unshift File.dirname(__FILE__) + '/lib/'
 require 'termcolor'
-require 'spec/rake/spectask'
+require 'rspec/core'
+require 'rspec/core/rake_task'
 
-desc 'run all specs'
-Spec::Rake::SpecTask.new do |t|
-  t.spec_files = FileList['spec/**/*_spec.rb']
-  t.spec_opts = ['-c']
+task :default => :spec
+
+RSpec::Core::RakeTask.new(:spec) do |spec|
+  spec.pattern = FileList['spec/**/*_spec.rb']
 end
 
 desc 'Generate gemspec'
