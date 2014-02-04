@@ -89,5 +89,14 @@ module TermColor
         TermColor.prepare_parse(combined).should == separated
       end
     end
+
+    it 'should do colorize using String#termcolor' do
+      "<red>ruby</red>".termcolor.should == "\e[31mruby\e[0m"
+      "ruby".termcolor(:red).should == "<red>ruby</red>".termcolor
+      "ruby isn't ruby gem".termcolor(:red, 11..14).should == "ruby isn't <red>ruby</red> gem".termcolor
+      "ruby isn't ruby gem".termcolor(:red, 'ruby').should == "<red>ruby</red> isn't <red>ruby</red> gem".termcolor
+      "ruby isn't ruby gem".termcolor(:red, :ruby).should == "<red>ruby</red> isn't <red>ruby</red> gem".termcolor
+      "Ruby isn't Ruby Gem".termcolor(:red, '[A-Z]+').should == "<red>R</red>uby isn't <red>R</red>uby <red>G</red>em".termcolor
+    end
   end
 end
